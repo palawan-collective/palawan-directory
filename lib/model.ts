@@ -2,9 +2,9 @@ export type Business={business_id:string;name:string;[key:string]:unknown};
 export type Media={business_id:string;filename:string;url:string;source_url:string;license:string;attribution:string;permission_status:string;cover:boolean};
 export type Candidate={business_id:string;source_url:string;permission_status:string;filename?:string;license?:string;attribution?:string};
 export type State={businesses:Business[];media:Media[];candidates:Candidate[]};
-export const categories=['All','Stay','Eat','Drink','Explore','Discover','Wellness','Shop','Transport','Essentials'] as const;
+export const categories=['All','Stay','Eat','Drink','Explore','Discover','Wellness','Shop','Transport','Essentials','Services'] as const;
 export const destinations=['Puerto Princesa','Port Barton','San Vicente','El Nido','All Palawan'];
-export const colors:Record<string,string>={Stay:'#285d4a',Eat:'#c56b3c',Drink:'#9a7653',Explore:'#187e8d',Discover:'#749253',Wellness:'#ac735f',Shop:'#a28a45',Transport:'#586e9c',Essentials:'#6e7672'};
+export const colors:Record<string,string>={Stay:'#285d4a',Eat:'#c56b3c',Drink:'#9a7653',Explore:'#187e8d',Discover:'#749253',Wellness:'#ac735f',Shop:'#a28a45',Transport:'#586e9c',Essentials:'#6e7672',Services:'#6b7280'};
 export const centers:Record<string,[number,number,number]>={'Puerto Princesa':[9.76,118.75,11],'Port Barton':[10.411,119.176,13],'San Vicente':[10.53,119.273,11],'El Nido':[11.2,119.39,11],'All Palawan':[9.9,118.8,7]};
 export const str=(x:unknown)=>String(x??'').trim();
 export function category(r:Business){const c=str(r.directory_category||r.category).toLowerCase(),s=str(r.subcategory).toLowerCase();if(categories.slice(1).some(x=>x.toLowerCase()===c))return c[0].toUpperCase()+c.slice(1);if(c==='accommodation'||/hotel|lodging|resort/.test(s))return 'Stay';if(c==='food & beverage')return /coffee|cafe|café|bar|bakery|dessert/.test(s)?'Drink':'Eat';if(/tour|activit/.test(c))return 'Explore';if(/attraction/.test(c))return 'Discover';if(c==='transportation')return 'Transport';if(c==='wellness')return 'Wellness';if(c==='retail'){if(/pharmacy|convenience/.test(s))return 'Essentials';if(/fashion|arts_crafts|flowers_and_gifts|specialty_store|souvenir/.test(s))return 'Shop'}if(/health|medical/.test(c))return 'Essentials';return 'Other'}

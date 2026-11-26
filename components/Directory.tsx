@@ -7,14 +7,15 @@ import {Business, Media, destinations, category, coordinates, safeLink, str} fro
 
 const MapView = dynamic(() => import('./Map'), {ssr:false, loading:() => <div className="map-shell">Loading map…</div>});
 const groups = {
-  All: ['⊞', 'All'],
-  Stay: ['⌂', 'Accommodations'],
+  All: ['✳', 'All'],
+  Stay: ['🏨', 'Accommodations'],
+  Eat: ['🍽', 'Restaurants'],
   Drink: ['☕', 'Cafés'],
-  Eat: ['♨', 'Restaurants'],
-  Explore: ['△', 'Tours'],
-  Wellness: ['✿', 'Wellness'],
-  Shop: ['▣', 'Shopping'],
-  Services: ['⚙', 'Services'],
+  Explore: ['🧭', 'Tours & Activities'],
+  Discover: ['🏝', 'Beaches & Sights'],
+  Wellness: ['💆', 'Wellness'],
+  Shop: ['🛍', 'Shopping'],
+  Services: ['🧰', 'Local Services'],
 };
 type Group = keyof typeof groups;
 type View = 'Home' | 'Explore' | 'Discover' | 'Saved';
